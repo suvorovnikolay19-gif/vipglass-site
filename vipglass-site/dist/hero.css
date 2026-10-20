@@ -1,0 +1,99 @@
+/*
+  VIP Glass, вариант P: первый экран главной по образцу владельца (boss-site/ref-hero/hero-block.html), 20.10.2026.
+  Подключается после p-theme.css. Только оформление: тексты, ссылки и разметка сайта не меняются.
+  Образец: фото на весь экран без полей, шапка плавающей стеклянной капсулой по центру,
+  тонкий крупный заголовок (Manrope 300), белая кнопка-капсула, направления в белой панели внизу.
+*/
+
+/* ---------- Шапка главной: стеклянная капсула по центру ---------- */
+body:has(#main>.hero) .header{
+  top:16px;width:max-content;max-width:calc(100% - 48px);height:58px;
+  margin:28px auto -86px;padding:8px 8px 8px 12px;gap:8px;justify-content:center;
+  border:1px solid rgba(255,255,255,.14);border-radius:999px;
+  background:rgba(10,14,20,.42);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  box-shadow:0 10px 40px rgba(0,0,0,.25);color:#fff;animation:none
+}
+@supports (animation-timeline:scroll()){
+  body:has(#main>.hero) .header{animation:p-hero-pill linear both;animation-timeline:scroll(root);animation-range:0 60vh}
+}
+@supports not (animation-timeline:scroll()){
+  body:has(#main>.hero) .header{background:rgba(10,14,20,.78)}
+}
+@keyframes p-hero-pill{
+  0%,70%{background:rgba(10,14,20,.42);color:#fff;border-color:rgba(255,255,255,.14);box-shadow:0 10px 40px rgba(0,0,0,.25)}
+  100%{background:rgba(255,255,255,.94);color:#1B1B19;border-color:rgba(17,17,17,.06);box-shadow:0 1px 2px rgba(17,17,17,.06),0 8px 24px rgba(17,17,17,.08)}
+}
+body:has(#main>.hero) .identity{gap:10px;margin-right:12px}
+body:has(#main>.hero) .identity img{width:36px;height:36px;border-radius:50%;padding:3px;border:0}
+body:has(#main>.hero) .identity span{font-size:12px;font-weight:500;line-height:1.15;opacity:.92}
+body:has(#main>.hero) .desktop-nav{gap:4px}
+body:has(#main>.hero) .desktop-nav button,
+body:has(#main>.hero) .desktop-nav a{padding:8px 12px;border-radius:999px;font-size:14px;font-weight:400;opacity:.9;transition:background .2s,opacity .2s}
+body:has(#main>.hero) .desktop-nav button:hover,
+body:has(#main>.hero) .desktop-nav a:hover{opacity:1;background:rgba(127,127,127,.16)}
+body:has(#main>.hero) .header-actions{gap:4px}
+body:has(#main>.hero) .header .icon-btn{width:38px;height:38px;margin-left:4px}
+body:has(#main>.hero) .header .icon-btn svg{width:17px;height:17px}
+body:has(#main>.hero) .header .icon-btn:hover{background:rgba(127,127,127,.16)}
+body:has(#main>.hero) .project-link{height:40px;margin-left:4px;padding:0 8px 0 16px;gap:10px;background:#fff;color:#0B0F14;font-size:14px;font-weight:500;box-shadow:inset 0 0 0 1px rgba(17,17,17,.06)}
+body:has(#main>.hero) .project-link:hover{background:#E9EDF2}
+body:has(#main>.hero) .project-link .project-count{width:24px;height:24px;min-width:24px;background:#0B0F14;color:#fff;font-size:12px;font-weight:600}
+
+/* ---------- Первый экран: фото на весь экран ---------- */
+.hero{height:100svh;min-height:640px;max-height:none;margin:0;border-radius:0;background:#0B0F14}
+.hero-img{object-position:center 60%}
+.hero:after{background:
+  radial-gradient(ellipse 52% 46% at 50% 47%,rgba(6,10,16,.36),rgba(6,10,16,0) 72%),
+  linear-gradient(180deg,rgba(6,10,16,.55) 0%,rgba(6,10,16,.20) 28%,rgba(6,10,16,.20) 62%,rgba(6,10,16,.60) 100%)}
+.hero-copy{padding:120px 24px 190px;text-shadow:0 1px 16px rgba(6,10,16,.28)}
+.hero-copy .btn{text-shadow:none}
+.hero-copy .eyebrow{margin-bottom:22px;font-size:12px;font-weight:500;letter-spacing:.18em;color:rgba(255,255,255,.78)}
+.hero h1{max-width:14ch;font-size:clamp(52px,7.2vw,112px);font-weight:300!important;line-height:.98;letter-spacing:-.03em;text-wrap:balance}
+.hero-copy p{max-width:46ch;margin-top:28px;font-size:clamp(16px,1.25vw,20px);font-weight:400;line-height:1.5;color:rgba(255,255,255,.9);text-wrap:pretty}
+.hero .button-row{gap:16px 22px;margin-top:40px}
+.hero .button-row .btn.light{min-height:0;padding:16px 28px;gap:10px;border:0;background:#fff;color:#0B0F14;font-size:15px;font-weight:500}
+.hero .button-row .btn.light:hover{background:#E9EDF2}
+.hero .button-row .btn.light span{font-size:14px}
+.hero-copy .text-button{padding-bottom:2px;border-bottom:1px solid rgba(255,255,255,.4);font-size:14px;font-weight:400;color:rgba(255,255,255,.88);transition:color .2s,border-color .2s}
+.hero-copy .text-button:hover{opacity:1;color:#fff;border-color:rgba(255,255,255,.9)}
+
+/* Низ экрана: подпись над белой панелью направлений, всё по центру */
+.hero-bottom{left:24px;right:24px;bottom:28px;flex-direction:column-reverse;align-items:center;justify-content:flex-end;gap:18px}
+.hero-bottom .eyebrow{display:block;min-height:0;padding:0;border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;font-size:11px;font-weight:500;letter-spacing:.18em;line-height:1.5;text-align:center;color:rgba(255,255,255,.66)}
+.hero-links{flex-wrap:wrap;justify-content:center;gap:4px;max-width:100%;padding:6px;border:0;border-radius:14px;background:#fff;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.hero-links a{min-height:0;padding:12px clamp(12px,1.4vw,22px);gap:6px;border:0;border-radius:999px;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;color:#111;font-size:14px;font-weight:500;white-space:nowrap}
+.hero-links a span{font-size:11px;opacity:.6}
+.hero-links a:hover{background:#0B0F14;color:#fff}
+
+/* ---------- Планшет и телефон ---------- */
+@media(max-width:800px){
+  body:has(#main>.hero) .header{top:10px;width:auto;max-width:none;height:56px;margin:12px 12px -68px;padding:6px 6px 6px 8px;justify-content:space-between;border-radius:999px}
+  body:has(#main>.hero) .identity{margin-right:0}
+  body:has(#main>.hero) .identity img{width:40px;height:40px}
+  body:has(#main>.hero) .project-link{height:40px;padding:0 6px 0 14px;font-size:13px;background:#fff;color:#0B0F14}
+  body:has(#main>.hero) .project-link .project-count{width:28px;height:28px;min-width:28px;background:#0B0F14;color:#fff}
+  .hero{height:auto;min-height:100svh;margin:0;border-radius:0}
+  .hero-copy{margin-block:auto;padding:116px 20px 28px}
+  .hero-bottom{position:relative;left:auto;right:auto;bottom:auto;padding:0 12px 24px;gap:14px}
+  .hero-bottom>.eyebrow{display:none}
+}
+@media(max-width:600px){
+  .hero-copy .eyebrow{margin-bottom:16px;font-size:10px;letter-spacing:.16em}
+  .hero h1{font-size:clamp(44px,12.4vw,56px);line-height:1}
+  .hero-copy p{margin-top:18px;font-size:15px}
+  .hero .button-row{gap:14px 20px;margin-top:28px}
+  .hero .button-row .btn.light{padding:14px 24px;font-size:14px}
+  .hero-copy .text-button{font-size:13px}
+  .hero-links{gap:2px;padding:5px;border-radius:14px}
+  .hero-links a{padding:10px 11px;font-size:13px}
+}
+
+/* Без анимации шапки при «уменьшить движение»: тёмная капсула читается и над фото, и над белым */
+@media(prefers-reduced-motion:reduce){
+  body:has(#main>.hero) .header{animation:none;background:rgba(10,14,20,.78)}
+}
+
+/* Панель направлений: капсула, как пункты внутри, на главной и на внутренних страницах (20.10.2026) */
+.hero-links,.catalog-direction-nav{border-radius:999px}
+@media(max-width:1100px){.hero-links,.catalog-direction-nav{border-radius:26px}}
+@media(max-width:600px){.catalog-direction-nav{border-radius:0}}
